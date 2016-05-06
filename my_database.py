@@ -24,7 +24,6 @@ class Database:
 		"""
 		Searches for entries based on journal body/entry
 		"""
-		# import pdb; pdb.set_trace()
 
 		self.cursor.execute("SELECT * FROM JournalEntries WHERE body LIKE '%{}%' ORDER BY id LIMIT 10".format(args))
 		for row in self.cursor.fetchall():
@@ -63,10 +62,21 @@ class Database:
 
 	def open(self, args):
 		self.cursor.execute("SELECT * FROM JournalEntries WHERE id = {}".format(args))
+		output = ""
 		for row in self.cursor.fetchall():
 			print '\n  {} : {} \n    {} \n   {}\n\n'.format(row[0], row[1], row[2], row[3])
 
 	def open_all(self, args):
 		self.cursor.execute("SELECT * FROM JournalEntries")
+		output = ''
+		for row in self.cursor.fetchall():
+			output += '\n  {} : {} \n    {} \n   {}\n\n'.format(row[0], row[1], row[2], row[3])
+			print output
+		with open(row[2]+'.txt', 'wt') as f:
+			f.write(output)
+			print "Open your folder to view the journal in a text file \n"
+
 		for row in self.cursor.fetchall():
 			print '\n  {} : {} \n    {} \n   {}\n\n'.format(row[0], row[1], row[2], row[3])
+
+			

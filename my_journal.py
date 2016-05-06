@@ -1,9 +1,13 @@
 """
-This example uses docopt with the built in cmd module to demonstrate an
-interactive command application.
+ThoughtBook
+
 Usage:
     journal entry <entry>
     journal search <args>
+    journal open <id>
+    journal open_all
+    journal delete <text>
+    journal quit
     journal (-i | --interactive)
     journal (-h | --help | --version)
 Options:
@@ -68,13 +72,17 @@ class Journal (cmd.Cmd):
 
     @docopt_cmd
     def do_entry(self, arg):
-        """Usage: entry <entry>..."""
+        """
+        Usage: entry <entry>...
+        """
 
         return JournalEntry().create_entry(arg)
 
     @docopt_cmd
     def do_search(self, args):
-        """Usage: search <arg>..."""
+        """
+        Usage: search <arg>...
+        """
         search_criteria = args['<arg>']
 
         if search_criteria[0] == '>' or search_criteria[0] == '<':
@@ -89,19 +97,24 @@ class Journal (cmd.Cmd):
             print JournalEntry().search_text(search_criteria[0])
             
     def do_open(self, args):
-        """Opens a specific journal entry according to id
-            eg open 2
+        """
+        Usage: open <id>
         """
         args = int(args)
 
         return JournalEntry().open(args)
 
     def do_open_all(self, args):
+        """
+        Usage: open_all
+        """
         return JournalEntry().open_all(args)
 
 
     def do_delete(self, args):
-        """Usage: delete <text>"""
+        """
+        Usage: delete <text>
+        """
 
         return JournalEntry().delete(args)
 
