@@ -51,15 +51,16 @@ def docopt_cmd(func):
 class Journal (cmd.Cmd):
 
     def intro():
-        print '\t'
-        print '\t_ _    _     _    _ _  _  _  _'
-        print "\t | |-||_||_||_.|-| |  |-||_||_||-'"
-        print "\t                                 '"
+        print '\t '
+        print '\t __ __       __        __       __ __    __   __   __'
+        print "\t   |   |__| |  | |  | | __ |__|   |     |__| |  | |  | |_/"
+        print "\t   |   |  | |__| |__| |__| |  |   |     |__| |__| |__| | |"
         print '-------------------------------------------------------------------------'
         print '\t\t Hello, Welcome to ThoughtBook'
         print '\t Simple console app to collect your thoughts and events'
+        print '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . '
+        print '\t\t For any help please print help then enter'
         print '-------------------------------------------------------------------------'
-        print '\t'
 
     intro = intro()
     prompt = 'ThoughtBook>> '
